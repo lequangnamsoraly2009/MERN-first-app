@@ -1,4 +1,14 @@
 
+POST http://localhost:5000/api/auth/register
+Content-Type: application/json
+
+{
+    "username": "soraly",
+    "password": "soraly"
+}
+
+###
+
 POST http://localhost:5000/api/auth/login
 Content-Type: application/json
 
@@ -7,13 +17,38 @@ Content-Type: application/json
     "password": "soraly"
 }
 ###
-## Post post
+## Post post (Create Post)
 POST http://localhost:5000/api/post
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MGJlMTVkYjY5YmY5ZjI5MzVlM2I1OWIiLCJpYXQiOjE2MjMwNzAxNzF9.xZ49qdxI6Ym9mtaO3cBBrt4bNBNRkurokXiPdGloF-I
 
 {
-    "title": "Hi anh em",
+    "title": "Hi anh em 111111",
     "description": "abc",
     "url": "youtube.com",
     "status": "LEARNING"
 }
+
+###
+#Read Post
+GET http://localhost:5000/api/post
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MGJlMTVkYjY5YmY5ZjI5MzVlM2I1OWIiLCJpYXQiOjE2MjMwNzAxNzF9.xZ49qdxI6Ym9mtaO3cBBrt4bNBNRkurokXiPdGloF-I
+
+
+###
+# Update Post
+PUT http://localhost:5000/api/post/60be392ff16bdc2fd66eb202
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MGJlMTVkYjY5YmY5ZjI5MzVlM2I1OWIiLCJpYXQiOjE2MjMwNzAxNzF9.xZ49qdxI6Ym9mtaO3cBBrt4bNBNRkurokXiPdGloF-I
+
+{
+    "title": "My update part 2",
+    "description": "reactjs + typescript",
+    "url": "vue.org.vn",
+    "status":"LEARNED"
+}
+
+###
+#Delete Post
+DELETE http://localhost:5000/api/post/60be392ff16bdc2fd66eb202
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MGJlMTVkYjY5YmY5ZjI5MzVlM2I1OWIiLCJpYXQiOjE2MjMwNzAxNzF9.xZ49qdxI6Ym9mtaO3cBBrt4bNBNRkurokXiPdGloF-I
