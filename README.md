@@ -1,14 +1,19 @@
 # MERN-first-app
-# Getting Started with Create React App
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 
 ## 🧐 What's inside?
 A quick look at the top-level files and directories you'll see in this project.
 
     .
-    |-- client
+    |-- client--|
+    |           |--public
+    |           |--src--
+    |                   |--assets
+    |                   |--components
+    |                   |--features
+    |                   |--app
+    |                   |--common
+    |
     |--server--|
                |--index.js
                |--config
