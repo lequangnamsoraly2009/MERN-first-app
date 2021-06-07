@@ -23,9 +23,7 @@ router.post("/register", async (req, res) => {
     const user = await User.findOne({ username: username });
 
     if (user)
-      return res
-        .status(400)
-        .json({ success: false, message: "User already" });
+      return res.status(400).json({ success: false, message: "User already" });
 
     // All good day
     const hashPassword = await argon2.hash(password);
@@ -40,8 +38,62 @@ router.post("/register", async (req, res) => {
       process.env.ACCESS_TOKEN_SECRET
     );
 
-    res.json({ success: true, message:'User created successful',accessToken});
-  } catch (error) {}
+    res.json({
+      success: true,
+      message: "User created successful",
+      accessToken,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ success: false, message: "Internal server error" });
+  }
+});
+
+//@route POST api/auth/login
+//@desc Login user
+//@access Public
+
+router.post("/login", async (req, res) => {
+  const { username, password } = req.body;
+
+  //Simple validation Login
+  if (!username || !password) {
+    return res
+      .status(400)
+      .json({ success: false, message: "Missing username or password" });
+  }
+  //
+  try {
+    //check existing usernames
+    const user = await User.findOne({ username: username });
+
+    //If not existing
+    if (!user) {
+      return res
+        .status(400)
+        .json({ success: false, message: "Incorrect username or password" });
+    }
+
+    // If existing
+    // check password
+    const passwordValid = await argon2.verify(user.password, password);
+    // IF password incorrect
+    if (!passwordValid)
+      return res
+        .status(400)
+        .json({ success: false, message: "Incorrect username or password" });
+    //All good
+    const accessToken = jwt.sign(
+      {
+        userId: user._id,
+      },
+      process.env.ACCESS_TOKEN_SECRET
+    );
+    res.json({success: true,message: "Loggin successful", accessToken: accessToken})
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ success: false, message: "Internal server error" });
+  }
 });
 
 module.exports = router;

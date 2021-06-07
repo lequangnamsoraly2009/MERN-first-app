@@ -1,8 +1,19 @@
 
-POST http://localhost:5000/api/auth/register 
+POST http://localhost:5000/api/auth/login
 Content-Type: application/json
 
 {
-    "username": "b",
-    "password": "a"
+    "username": "soraly",
+    "password": "soraly"
+}
+###
+## Post post
+POST http://localhost:5000/api/post
+Content-Type: application/json
+
+{
+    "title": "Hi anh em",
+    "description": "abc",
+    "url": "youtube.com",
+    "status": "LEARNING"
 }
