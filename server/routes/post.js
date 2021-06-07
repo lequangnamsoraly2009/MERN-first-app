@@ -4,6 +4,22 @@ const verifyToken = require("../middleware/auth");
 
 const Post = require("../models/Post");
 
+//@route GET api/post
+//@desc GETs post
+//@access Private
+
+router.get("/",verifyToken,async (req, res)=>{
+    try {
+        const posts = await Post.find({user: req.userId}).populate("user",['username']);
+        res.json({success: true,posts});
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({success:false,message: 'Internal server error'})
+    }
+
+})
+
+
 //@route POST api/post
 //@desc Create post
 //@access Private
@@ -36,6 +52,8 @@ router.post("/", verifyToken,  async (req, res) => {
       res.status(500).json({ success: false, message: "Internal server error"});
   }
 });
+
+
 
 
 module.exports = router
