@@ -1,15 +1,15 @@
 import './App.css';
 import {BrowserRouter as Router, Route,Switch} from 'react-router-dom';
 import Landing from './components/Layout/Landing';
-import Login from './components/Auth/Login';
+import Auth from './features/Auth/pages/Auth';
 
 function App() {
   return (
     <Router>
       <Switch>
         <Route exact path="/" component={Landing} />
-        <Route exact path="/login" component={Login} />
-
+        <Route exact path="/login" render={props => <Auth {...props} authRoute="login" />} />
+        <Route exact path="/register" render={props => <Auth {...props} authRoute="register" />} />
       </Switch>
     </Router>
   );
