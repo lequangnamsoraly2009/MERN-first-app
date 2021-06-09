@@ -4,5 +4,6 @@
     - Controller
 
 ### Runing server
-`code` yarn server 
-`code` npm server
+`yarn server` 
+otherwise
+`npm server` 
