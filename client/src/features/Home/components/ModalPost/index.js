@@ -17,6 +17,7 @@ function ModalPost(props) {
   const dispatch = useDispatch();
 
   const { title, description, url, status } = newPost;
+  // const {show,message,type} = props.setShowToast;
 
   const reset = () =>{
     props.setShowModal(false);
@@ -44,6 +45,7 @@ function ModalPost(props) {
       return { success: false, message: "Server crash" };
     }
     reset();
+    // props.setShowToast({show:true,message,type: 'success' ? 'success' : 'danger'})
   };
 
   

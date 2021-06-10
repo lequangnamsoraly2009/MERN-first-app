@@ -12,6 +12,14 @@ function HomePage() {
   // Hooks
   const { postsLoading, posts } = useSelector((state) => state.post);
   const [showModal, setShowModal] = useState(false);
+  // const [showToast, setShowToast] = useState({
+  //   show: false,
+  //   message: "",
+  //   type: null,
+  // });
+
+  // const { show, message, type } = showToast;
+
   const dispatch = useDispatch();
 
   //get All posts
@@ -26,6 +34,18 @@ function HomePage() {
       dispatch(loadingPostFail());
     }
   };
+
+  //deletePost
+  const deletePost = async (postId) =>{
+    try {
+      const response = await axios.delete(`${apiUrl}/post/${postId}`);
+      if(response.data.success){
+        dispatch(deletePost(response.data));
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   useEffect(() => getAllPosts(), []);
 
@@ -65,7 +85,18 @@ function HomePage() {
   return (
     <>
       <ButtonAdd onClick={(e) => modalOpenClose(e)}>Add New Post</ButtonAdd>
-
+      {/* <Toast
+        show={show}
+        delay={3000}
+        autoHide
+        onClose={setShowToast({ show: false, message: "", type: null })}
+        style={{ position: "fixed", top: "20%", right: "10px" }}
+        className={`bg-${type} text-white`}
+      >
+        <Toast.Body>
+          <strong>{message}</strong>
+        </Toast.Body>
+      </Toast> */}
       {posts?.length === 0 ? (
         <Card className="text-center mx-5 my-5">
           <Card.Header as="h1">Hi Ban</Card.Header>
@@ -86,7 +117,11 @@ function HomePage() {
           </Row>
         </>
       )}
-      <ModalPost showModal={showModal} setShowModal={setShowModal} />
+      <ModalPost
+        showModal={showModal}
+        setShowModal={setShowModal}
+        // setShowToast={setShowToast}
+      />
     </>
   );
 }
