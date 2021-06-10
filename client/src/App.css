@@ -40,14 +40,16 @@
 */
 
 /* Post button */
-/* .post-button {
+ .post-button {
 	padding-top: 0;
 	background: transparent;
-	border: none;
-}
+	border: 1px solid #333;
+	color: black
+} 
 
 .post-button:hover {
 	background: transparent;
+	color: black;
 }
 
 a.post-button.btn:focus,
@@ -67,7 +69,7 @@ button.post-button.btn:active {
 } */
 
 /* Floating add button */
-/* .btn-floating {
+.btn-floating {
 	position: fixed;
 	right: 3rem;
 	bottom: 3rem;
@@ -85,10 +87,10 @@ button.post-button.btn:active {
 	background: transparent;
 	border: none;
 	box-shadow: none;
-} */
+}
 
 /* Add new post tooltip */
-/* .tooltip {
+.tooltip {
 	background: transparent;
 }
 
@@ -98,16 +100,16 @@ button.post-button.btn:active {
 
 .tooltip-inner {
 	background: #78c2ad;
-} */
+}
 
 /* Post border thicker */
-/* .border-success,
+.border-success,
 .border-warning,
 .border-danger {
 	border-width: 2px;
-} */
+}
 
 /* Post title */
-/* .post-title {
+.post-title {
 	margin-bottom: 0.5rem;
-}  */
+} 

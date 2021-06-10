@@ -13,20 +13,20 @@ POST http://localhost:5000/api/auth/login
 Content-Type: application/json
 
 {
-    "username": "soraly",
-    "password": "soraly"
+    "username": "soraly1",
+    "password": "123456"
 }
 ###
 ## Post post (Create Post)
 POST http://localhost:5000/api/post
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MGJlMTVkYjY5YmY5ZjI5MzVlM2I1OWIiLCJpYXQiOjE2MjMwNzAxNzF9.xZ49qdxI6Ym9mtaO3cBBrt4bNBNRkurokXiPdGloF-I
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MGMwNzYzZDNkZTQwMjBlOGRhYjViOTQiLCJpYXQiOjE2MjMzNDI1Nzh9.I8-GZEHOiHNXkXgQx6Sd5nPup7S9rWXEuk5o5Ohiv-0
 
 {
-    "title": "Hi anh em 111111",
-    "description": "abc",
+    "title": "Hi anh em 1111",
+    "description": "abcaaaa",
     "url": "youtube.com",
-    "status": "LEARNING"
+    "status": "LEARNED"
 }
 
 ###
