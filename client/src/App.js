@@ -42,7 +42,7 @@ function App() {
 
         <Route exact path="/home" component={Home} />
         <ProtectedRoute exact path="/about" component={About}/>
-
+        
         <Route exact component={NotFound} />
       </Switch>
     </Router>
