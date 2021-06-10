@@ -9,7 +9,7 @@ import { Redirect } from "react-router";
 function Auth({ authRoute }) {
   const { authLoading, isAuthenticated } = useSelector((state) => state.auth);
   let body;
-  if (authLoading) {
+  if (authLoading===true) {
     body = (
       <AppLoading>
         <AppLoadingContents>

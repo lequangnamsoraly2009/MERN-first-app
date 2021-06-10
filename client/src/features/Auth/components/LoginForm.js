@@ -8,12 +8,14 @@ import { apiUrl, LOCAL_STORAGE_TOKEN_NAME } from "../../../common/apiConstant";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { setAuth } from "../authSlice";
+import ArlertMessage from "../../../components/ArlertMessage";
 
 function LoginForm() {
   const [loginForm, setLoginForm] = useState({
     username: "",
     password: "",
   });
+  const [alert, setAlert] = useState(null);
 
   // const {authLoading,isAuthenticated,user } = useSelector(state => state.user);
 
@@ -27,6 +29,22 @@ function LoginForm() {
     // e.target.name get name from form input
     // setLoginForm get all loginForm and then overwrite new value
     setLoginForm({ ...loginForm, [e.target.name]: e.target.value });
+  };
+
+  const loginSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const loginData = await loginUser(loginForm);
+      // console.log(loginData);
+      if (loginData.success) {
+        history.push("/home");
+      } else {
+        setAlert({ type: "danger", message: loginData.message });
+        setTimeout(() => setAlert(null), 2000);
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const authenticateUser = async () => {
@@ -52,22 +70,10 @@ function LoginForm() {
     authenticateUser();
   }, []);
 
-  const loginSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const loginData = await loginUser(loginForm);
-      console.log(loginData);
-      if (loginData.success) {
-        history.push("/home");
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
   return (
     <>
       <Form onSubmit={loginSubmit}>
+        <ArlertMessage info={alert} />
         <Form.Group className="mb-4">
           <Form.Control
             type="text"
