@@ -5,14 +5,16 @@ import Home from "./features/Home";
 import NotFound from "./components/NotFound";
 import Landing from "./components/Layout/Landing"
 import ProtectedRoute from "./components/routing/ProtectedRoute";
-import HomePage from "./features/Home/pages/homePage";
-import { useSelector } from "react-redux";
+import About from "./features/Home/pages/aboutPage";
+// import ProtectedRoute from "./components/routing/ProtectedRoute";
+// import HomePage from "./features/Home/pages/homePage";
+// import { useSelector } from "react-redux";
 // import Spinner from "react-spinkit";
 // import styled from "styled-components";
 
 function App() {
-  const { isAuthenticated } = useSelector((state) => state.auth);
-  console.log(isAuthenticated);
+  // const { isAuthenticated } = useSelector((state) => state.auth);
+  // console.log(isAuthenticated);
   // if (authLoading===true) {
   //   return (
   //     <AppLoading>
@@ -39,6 +41,7 @@ function App() {
         />
 
         <Route exact path="/home" component={Home} />
+        <ProtectedRoute exact path="/about" component={About}/>
 
         <Route exact component={NotFound} />
       </Switch>

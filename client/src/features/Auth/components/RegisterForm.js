@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Form, Button } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import ArlertMessage from "../../../components/ArlertMessage";
 import { registerUser } from "../logics/registerUser";
 
@@ -11,6 +11,8 @@ function RegisterForm() {
     passwordConfirm: "",
   });
   const [alert, setAlert] = useState(null);
+
+  const history = useHistory();
 
   const { username, password, passwordConfirm } = registerForm;
 
@@ -32,6 +34,9 @@ function RegisterForm() {
       if (!registerData.success) {
         setAlert({ type: "danger", message: registerData.message });
         setTimeout(() => setAlert(null), 2000);
+      }
+      else{
+        history.push("/home");
       }
     } catch (error) {}
   };

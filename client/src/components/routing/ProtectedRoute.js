@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import styled from "styled-components";
 import Spinner from "react-spinkit";
 import { Redirect, Route } from "react-router";
+import NavBarMenu from "../../features/Home/components/NavBarMenu"
 
 function ProtectedRoute({ component: Component, ...rest }) {
   const { authLoading, isAuthenticated } = useSelector((state) => state.auth);
@@ -23,6 +24,7 @@ function ProtectedRoute({ component: Component, ...rest }) {
       render={(props) =>
         isAuthenticated===true  ? (
           <>
+            <NavBarMenu />
             <Component {...rest} {...props} />
           </>
         )
