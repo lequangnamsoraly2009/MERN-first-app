@@ -1,14 +1,17 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { apiUrl } from "../../../../common/apiConstant";
 import { useDispatch, useSelector } from "react-redux";
 import { loadingPostSuccess, loadingPostFail } from "../../postSlice";
 import { Card, Button, Row, Col } from "react-bootstrap";
 import SinglePost from "../../components/SinglePost";
+import ModalPost from "../../components/ModalPost";
+import styled from "styled-components";
 
 function HomePage() {
   // Hooks
   const { postsLoading, posts } = useSelector((state) => state.post);
+  const [showModal, setShowModal] = useState(false);
   const dispatch = useDispatch();
 
   //get All posts
@@ -25,6 +28,11 @@ function HomePage() {
   };
 
   useEffect(() => getAllPosts(), []);
+
+  const modalOpenClose = (e) => {
+    e.preventDefault();
+    setShowModal(true);
+  };
 
   //   let body;
   //   if (posts.length === 0) {
@@ -56,6 +64,8 @@ function HomePage() {
 
   return (
     <>
+      <ButtonAdd onClick={(e) => modalOpenClose(e)}>Add New Post</ButtonAdd>
+
       {posts?.length === 0 ? (
         <Card className="text-center mx-5 my-5">
           <Card.Header as="h1">Hi Ban</Card.Header>
@@ -66,16 +76,28 @@ function HomePage() {
           </Card.Body>
         </Card>
       ) : (
-        <Row className="row-cols-1 row-cols-md-3 g-4 mx-auto mt-3">
-          {posts?.map((post) => (
-            <Col key={post._id} className="my-2">
-              <SinglePost post={post} />
-            </Col>
-          ))}
-        </Row>
+        <>
+          <Row className="row-cols-1 row-cols-md-3 g-4 mx-auto mt-3">
+            {posts?.map((post) => (
+              <Col key={post._id} className="my-2">
+                <SinglePost post={post} />
+              </Col>
+            ))}
+          </Row>
+        </>
       )}
+      <ModalPost showModal={showModal} setShowModal={setShowModal} />
     </>
   );
 }
+
+const ButtonAdd = styled.button`
+  width: 120px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  margin: 0 auto;
+  margin-top: 20px;
+`;
 
 export default HomePage;
