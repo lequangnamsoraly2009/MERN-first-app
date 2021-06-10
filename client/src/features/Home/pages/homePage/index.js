@@ -35,17 +35,7 @@ function HomePage() {
     }
   };
 
-  //deletePost
-  const deletePost = async (postId) =>{
-    try {
-      const response = await axios.delete(`${apiUrl}/post/${postId}`);
-      if(response.data.success){
-        dispatch(deletePost(response.data));
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  }
+  
 
   useEffect(() => getAllPosts(), []);
 
